@@ -36,11 +36,11 @@ export default function Page() {
         className="relative z-10 self-center flex gap-3 items-center px-4 py-2.5 rounded-full border bg-[#081622]/38 backdrop-blur-[18px] shadow-[0_12px_50px_rgba(0,0,0,0.18)]"
         style={{ borderColor: 'rgba(238,250,255,0.18)' }}
       >
-        <Link href="#" className="hidden md:block text-[#eefaff]/72 text-xs no-underline px-3 py-2 hover:text-[#eefaff] transition-colors">Search</Link>
-        <Link href="#" className="hidden md:block text-[#eefaff]/72 text-xs no-underline px-3 py-2 hover:text-[#eefaff] transition-colors">Memory</Link>
+        <Link href="#" className="hidden md:block text-[#eefaff]/72 text-xs no-underline px-3 py-2 hover:text-[#eefaff] transition-colors">Services</Link>
+        <Link href="#" className="hidden md:block text-[#eefaff]/72 text-xs no-underline px-3 py-2 hover:text-[#eefaff] transition-colors">Case Studies</Link>
         <div className="w-[34px] h-[34px] rounded-full shadow-[0_0_30px_rgba(156,236,255,0.5)]" style={{ background: 'radial-gradient(circle,#eefaff,#9cecff 45%,rgba(156,236,255,.08))' }}></div>
-        <Link href="#" className="hidden md:block text-[#eefaff]/72 text-xs no-underline px-3 py-2 hover:text-[#eefaff] transition-colors">Spaces</Link>
-        <Link href="#" className="hidden md:block text-[#eefaff]/72 text-xs no-underline px-3 py-2 hover:text-[#eefaff] transition-colors">Login</Link>
+        <Link href="#" className="hidden md:block text-[#eefaff]/72 text-xs no-underline px-3 py-2 hover:text-[#eefaff] transition-colors">About Us</Link>
+        <Link href="#" className="hidden md:block text-[#eefaff]/72 text-xs no-underline px-3 py-2 hover:text-[#eefaff] transition-colors">Blog</Link>
       </motion.nav>
 
       {/* Bottom Content */}
