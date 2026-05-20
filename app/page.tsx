@@ -11,8 +11,8 @@ export default function Page() {
       {/* Video Background */}
       <MuxPlayer 
         playbackId="CSrJAiFtfFOG1uiGFIHqC01ZUtqvMBfBCRNs5tFNVLCs"
-        className="absolute inset-0 w-full h-full -z-20"
-        style={{ '--media-object-fit': 'cover', '--media-object-position': 'center 46%' } as any}
+        className="absolute inset-0 w-full h-full -z-20 pointer-events-none"
+        style={{ '--controls': 'none', '--media-object-fit': 'cover', '--media-object-position': 'center 46%' } as any}
         autoPlay="muted" 
         loop 
         muted 
