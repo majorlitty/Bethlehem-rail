@@ -1,17 +1,21 @@
 'use client'
 
-import { motion } from 'motion/react'
+import { motion, AnimatePresence } from 'motion/react'
 import Link from 'next/link'
 import MuxPlayer from '@mux/mux-player-react'
+import { useState } from 'react'
+import { Menu, X } from 'lucide-react'
 
 export default function Page() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
   return (
-    <main className="relative flex flex-col min-h-[100svh] overflow-hidden px-[clamp(20px,4vw,58px)] py-6 z-0">
+    <main className="relative flex flex-col min-h-[100svh] overflow-x-clip px-[clamp(16px,4vw,58px)] py-4 sm:py-6 z-0">
       
       {/* Video Background */}
       <MuxPlayer 
         playbackId="CSrJAiFtfFOG1uiGFIHqC01ZUtqvMBfBCRNs5tFNVLCs"
-        className="absolute inset-0 w-full h-full -z-20 pointer-events-none"
+        className="fixed inset-0 w-full h-full -z-20 pointer-events-none"
         style={{ '--controls': 'none', '--media-object-fit': 'cover', '--media-object-position': 'center 46%' } as any}
         autoPlay="muted" 
         loop 
@@ -22,9 +26,9 @@ export default function Page() {
 
       {/* Overlay Background */}
       <div 
-        className="absolute inset-0 pointer-events-none -z-10" 
+        className="fixed inset-0 pointer-events-none -z-10" 
         style={{
-          background: 'linear-gradient(180deg,rgba(3,12,20,.28),rgba(3,12,20,.05) 42%,rgba(3,12,20,.72)), radial-gradient(circle at 74% 72%,rgba(156,236,255,.18),transparent 28%)'
+          background: 'linear-gradient(180deg,rgba(3,12,20,.28),rgba(3,12,20,.05) 42%,rgba(3,12,20,1)), radial-gradient(circle at 74% 72%,rgba(156,236,255,.18),transparent 28%)'
         }}
       />
 
@@ -33,15 +37,46 @@ export default function Page() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="relative z-10 self-center flex gap-3 items-center px-4 py-2.5 rounded-full border bg-[#081622]/38 backdrop-blur-[18px] shadow-[0_12px_50px_rgba(0,0,0,0.18)]"
+        className="relative z-30 self-stretch md:self-center flex justify-between md:justify-center gap-3 items-center px-4 py-2.5 rounded-full border bg-[#081622]/38 backdrop-blur-[18px] shadow-[0_12px_50px_rgba(0,0,0,0.18)]"
         style={{ borderColor: 'rgba(238,250,255,0.18)' }}
       >
+        <div className="md:hidden flex items-center justify-center w-[34px] h-[34px] rounded-full shadow-[0_0_30px_rgba(156,236,255,0.5)]" style={{ background: 'radial-gradient(circle,#eefaff,#9cecff 45%,rgba(156,236,255,.08))' }}></div>
+        
         <Link href="#" className="hidden md:block text-[#eefaff]/72 text-xs no-underline px-3 py-2 hover:text-[#eefaff] transition-colors">Services</Link>
         <Link href="#" className="hidden md:block text-[#eefaff]/72 text-xs no-underline px-3 py-2 hover:text-[#eefaff] transition-colors">Case Studies</Link>
-        <div className="w-[34px] h-[34px] rounded-full shadow-[0_0_30px_rgba(156,236,255,0.5)]" style={{ background: 'radial-gradient(circle,#eefaff,#9cecff 45%,rgba(156,236,255,.08))' }}></div>
+        
+        <div className="hidden md:block w-[34px] h-[34px] rounded-full shadow-[0_0_30px_rgba(156,236,255,0.5)]" style={{ background: 'radial-gradient(circle,#eefaff,#9cecff 45%,rgba(156,236,255,.08))' }}></div>
+        
         <Link href="#" className="hidden md:block text-[#eefaff]/72 text-xs no-underline px-3 py-2 hover:text-[#eefaff] transition-colors">About Us</Link>
         <Link href="#" className="hidden md:block text-[#eefaff]/72 text-xs no-underline px-3 py-2 hover:text-[#eefaff] transition-colors">Blog</Link>
+
+        {/* Mobile Menu Toggle */}
+        <button 
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="md:hidden p-1.5 text-[#eefaff] hover:bg-[#eefaff]/10 rounded-full transition-colors cursor-pointer"
+        >
+          {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
       </motion.nav>
+
+      {/* Mobile Menu Dropdown */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden absolute top-[72px] left-[clamp(16px,4vw,58px)] right-[clamp(16px,4vw,58px)] z-20 flex flex-col items-center py-4 rounded-2xl border bg-[#081622]/80 backdrop-blur-xl shadow-[0_12px_50px_rgba(0,0,0,0.3)]"
+            style={{ borderColor: 'rgba(238,250,255,0.18)' }}
+          >
+            <Link href="#" onClick={() => setIsMenuOpen(false)} className="w-full text-center text-[#eefaff] text-sm py-3 hover:bg-[#eefaff]/10 transition-colors">Services</Link>
+            <Link href="#" onClick={() => setIsMenuOpen(false)} className="w-full text-center text-[#eefaff] text-sm py-3 hover:bg-[#eefaff]/10 transition-colors">Case Studies</Link>
+            <Link href="#" onClick={() => setIsMenuOpen(false)} className="w-full text-center text-[#eefaff] text-sm py-3 hover:bg-[#eefaff]/10 transition-colors">About Us</Link>
+            <Link href="#" onClick={() => setIsMenuOpen(false)} className="w-full text-center text-[#eefaff] text-sm py-3 hover:bg-[#eefaff]/10 transition-colors">Blog</Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Bottom Content */}
       <motion.section 
@@ -54,8 +89,9 @@ export default function Page() {
            initial={{ opacity: 0, y: 20 }}
            animate={{ opacity: 1, y: 0 }}
            transition={{ duration: 0.8, delay: 0.3 }}
+           className="min-w-0"
         >
-          <h1 className="text-[clamp(64px,22vw,104px)] md:text-[clamp(74px,12vw,84px)] tracking-[-0.08em] leading-[1.0] font-medium m-0">Bethlehem <br /> Rail</h1>
+          <h1 className="text-[clamp(64px,22vw,104px)] md:text-[clamp(56px,10vw,84px)] tracking-[-0.08em] leading-[1.0] font-medium m-0 max-w-full break-words">Bethlehem <br /> Rail</h1>
           
         </motion.div>
         

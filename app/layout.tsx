@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="en" className={`${instrumentSans.variable} ${plexMono.variable}`}>
-      <body className="font-sans bg-[#071522] text-[#eefaff] m-0 min-h-[100svh] overflow-auto md:overflow-hidden" suppressHydrationWarning>{children}</body>
+      <body className="font-sans bg-[#071522] text-[#eefaff] m-0 min-h-[100svh] overflow-x-hidden overflow-y-auto" suppressHydrationWarning>{children}</body>
     </html>
   );
 }
