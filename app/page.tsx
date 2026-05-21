@@ -91,7 +91,7 @@ export default function Page() {
            transition={{ duration: 0.8, delay: 0.3 }}
            className="min-w-0"
         >
-          <h1 className="text-[clamp(64px,22vw,104px)] md:text-[clamp(56px,10vw,84px)] tracking-[-0.08em] leading-[1.0] font-medium m-0 max-w-full break-words">Bethlehem <br /> Rail</h1>
+          <h1 className="text-[clamp(40px,16vw,84px)] md:text-[clamp(56px,10vw,84px)] tracking-[-0.08em] leading-[1.0] font-medium m-0 max-w-full break-words">Bethlehem <br /> Rail</h1>
           
         </motion.div>
         
